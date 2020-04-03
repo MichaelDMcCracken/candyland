@@ -13,8 +13,9 @@ var spaces = {
 };
 
 var specials = {
-    "licorice": [27, 54],
-    "shortcut": [[18, 25], [4, 36]]
+    "licorice": [27, 54], //lose a turn
+    "shortcut": [[18, 25], [4, 36]] //shortcut to the next space in the array
+    
 };
 
 function setUpBoard(spaces, specials){
