@@ -32,8 +32,8 @@ function setUpBoard(spaces){
             };            
         });
         i++;
-    };
-    console.log(BOARD);   
+    };   
+    return BOARD;
 };
 
 function isItSpecial(i) {
@@ -53,4 +53,4 @@ function isItSpecial(i) {
     return ret;
 };
 
-setUpBoard(spaces);
+module.exports = setUpBoard(spaces);

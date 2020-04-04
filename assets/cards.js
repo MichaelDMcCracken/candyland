@@ -38,7 +38,6 @@ function shuffle(deck){
             quantity--;
         };
     });  
-    console.log(shuffledDeck);
     return shuffledDeck;
 };
 
