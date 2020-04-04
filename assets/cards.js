@@ -22,15 +22,23 @@ var deck = {
 function shuffle(deck){
     var arr = Object.entries(deck);
     var shuffledDeck = [];
+    // console.log(arr);
     arr.forEach(element => {
-        var color = element[0];
+        var card = {};
+        if(element[0].startsWith('DOUBLE ')){
+            card.moveSpaces = 2;
+            element[0] = element[0].substring(7,element[0].length);
+        } else {
+            card.moveSpaces = 1;
+        }
+        card.color = element[0];
         var quantity = element[1];
         while (quantity > 0) {
-            shuffledDeck.push(color);
+            shuffledDeck.push(card);
             quantity--;
         };
-        // console.log(shuffledDeck);
     });  
+    console.log(shuffledDeck);
     return shuffledDeck;
 };
 

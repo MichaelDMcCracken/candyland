@@ -15,22 +15,19 @@ var spaces = {
 var specials = {
     "licorice": [27, 54], //lose a turn
     "shortcut": [[18, 25], [4, 36]] //shortcut to the next space in the array
-    
 };
 
-function setUpBoard(spaces, specials){
+function setUpBoard(spaces){
     var arr = Object.entries(spaces);
-    var specialsArr = Object.entries(specials);
     var BOARD = [];
     var i = 0;
-    console.log(specialsArr);
     while(i < 84){
         arr.forEach(element => {
             if (element[1].includes(i)){
                 var obj = {};
                 obj.location = i;
                 obj.color = element[0];
-                obj.special = isItSpecial(specialsArr, i);
+                obj.special = isItSpecial(i);
                 BOARD.push(obj);
             };            
         });
@@ -39,9 +36,21 @@ function setUpBoard(spaces, specials){
     console.log(BOARD);   
 };
 
-function isItSpecial(specialsArr, i) {
-    var shortcut = specialsArr[1];
-    
-}
+function isItSpecial(i) {
+    var shortcuts = specials.shortcut;
+    var ret = "no"; 
+    var obj = {};
+    if (specials.licorice.includes(i)){
+        return "licorice";
+    };
+    shortcuts.forEach(el => {
+        if(el[0] === i){
+            obj.type = "shortcut";
+            obj.moveTo = el[1];
+            ret = obj;
+        }
+    });
+    return ret;
+};
 
-setUpBoard(spaces, specials);
+setUpBoard(spaces);
