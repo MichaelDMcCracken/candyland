@@ -42,6 +42,3 @@ function shuffle(deck){
 };
 
 module.exports = shuffle(deck);
-
-
-
