@@ -14,7 +14,8 @@ var spaces = {
 
 var specials = {
     "licorice": [27, 54], //lose a turn
-    "shortcut": [[18, 25], [4, 36]] //shortcut to the next space in the array
+    "shortcut": [[18, 25], [4, 36]], //shortcut to the next space in the array,
+    "candy": [21, 33, 50, 67]
 };
 
 function setUpBoard(spaces){
@@ -42,6 +43,9 @@ function isItSpecial(i) {
     var obj = {};
     if (specials.licorice.includes(i)){
         return "licorice";
+    };
+    if (specials.candy.includes(i)) {
+        return "candy";
     };
     shortcuts.forEach(el => {
         if(el[0] === i){
