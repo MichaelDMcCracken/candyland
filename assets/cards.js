@@ -32,6 +32,23 @@ function shuffle(deck){
             card.moveSpaces = 1;
         }
         card.color = element[0];
+        switch(element[0]){
+            case 'PEANUT':
+                card.special = 'candy';
+                break;
+            case 'LOLLIPOP':
+                card.special = 'candy';
+                break;
+            case 'MINT':
+                card.special = 'candy';
+                break;
+            case 'ICECREAM':
+                card.special = 'candy';
+                break;
+            default:
+                card.special = 'no';
+                break;
+        }
         var quantity = element[1];
         while (quantity > 0) {
             shuffledDeck.push(card);
@@ -41,4 +58,5 @@ function shuffle(deck){
     return shuffledDeck;
 };
 
+// console.log(shuffle(deck));
 module.exports = shuffle(deck);

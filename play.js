@@ -15,37 +15,41 @@ function play(){
         while(p < 4){
             var drawnCard = draw();
             PLAYERS[p].location = moveTo(PLAYERS[p],drawnCard); //move the current player based on the card drawn
-            console.log(PLAYERS[p]);
-            p++;
+            console.log(PLAYERS[p],drawnCard);
+            // PLAYERS[p].history.push(PLAYERS.location);
+            if (PLAYERS[p].location > firstPlace.location) {
+                firstPlace.location = PLAYERS[p].location;
+                firstPlace.name = PLAYERS[p].name;
+            }
+            p++;            
         }
-        firstPlace.location = 84;
     }
+    console.log("Winner: ", firstPlace)
 };
 
 function moveTo(currentPlayer,drawnCard){
     var nextSpace = currentPlayer.location;
-    if((drawnCard.special == 'candy') && (drawnCard.location < currentPlayer.location)){
-        while (drawnCard.color != BOARD[nextSpace].color) {
-            nextSpace--;
-        }
-    } else {
-        while (drawnCard.color != BOARD[nextSpace].color) {
-            nextSpace++;
-        }
+    if (drawnCard.special == 'candy') {
+        nextSpace = 0;                  //sometimes, candy slots are behind the player
+        console.log('candy!');
     }
+    while (drawnCard.color != BOARD[nextSpace].color){
+        nextSpace++;
+    };
+
     if(drawnCard.moveSpaces == 2){
         nextSpace++;
         while (drawnCard.color != BOARD[nextSpace].color) {
             nextSpace++;
-        }
-    }    
+        };
+    };
 
     if(BOARD[nextSpace].special.type == 'shortcut'){
         console.log("shortcut!!");
         nextSpace = BOARD[nextSpace].special.moveTo;
-    }
+    };
 
-    console.log(drawnCard);
+    // console.log(drawnCard);
     return nextSpace; //have to calculate the space they go to
 };
 
@@ -54,7 +58,6 @@ function draw(){
     var cardOnTop = Math.round(Math.random() * (CARDS.length - 1));
     var drawnCard = CARDS[cardOnTop];
     CARDS.splice(cardOnTop,1);
-    // console.log(CARDS.length, cardOnTop, drawnCard);
     if(CARDS.length == 0){
         CARDS = [...FULL_DECK]; //reset the deck
         console.log("Ran out of cards. Shuffling the deck!");
